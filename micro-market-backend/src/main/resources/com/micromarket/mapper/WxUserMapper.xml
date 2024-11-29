@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micromarket.mapper.WxUserInfoMapper">
+    <resultMap id="wxUserInfoResult" type="com.micromarket.entity.WxUserInfo">
+    </resultMap>
+    <select id="findOpenId" resultType="com.micromarket.entity.WxUserInfo" parameterType="String">
+        select * from t_wxuserinfo where openid=#{openid}
+    </select>
+</mapper>

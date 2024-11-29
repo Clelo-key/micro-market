@@ -10,8 +10,6 @@ $RECYCLE.BIN/
 .TemporaryItems
 .Trashes
 
-# Node.js
-node_modules/
 
 HELP.md
 target/
@@ -28,21 +26,39 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+
 
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+.DS_Store
+/dist
 
-### VS Code ###
-.vscode/
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
+*.ipr
+node_modules
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micromarket.mapper.OrderMapper">
+    <resultMap id="orderResult" type="com.micromarket.entity.Order">
+        <association property="wxUserInfo" column="userId"
+                     select="com.micromarket.mapper.WxUserInfoMapper.findOpenId">
+        </association>
+    </resultMap>
+    <select id="getTotal" resultType="Long" parameterType="Map">
+        select count(*) from t_order
+        <where>
+            <if test="orderNo!=null and orderNo!=''">
+                and OderNo like concat("%",#{orderNo},"%")
+            </if>
+        </where>
+
+    </select>
+    <select id="list" parameterType="Map" resultMap="orderResult">
+        select * from t_order
+        <where>
+            <if test="orderNo!=null and orderNo!=''">and orderNo like concat("%",#{orderNo},"%")</if>
+        </where>
+        order by createDate desc
+        <if test="start!=null and pageSize!=null"> limit #{start},#{pageSize}</if>
+    </select>
+</mapper>

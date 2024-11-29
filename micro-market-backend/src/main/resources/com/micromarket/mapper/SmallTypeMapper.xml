@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micromarket.mapper.SmallTypeMapper">
+    <resultMap id="smallTypeResult" type="com.micromarket.entity.SmallType">
+        <association property="bigType" column="bigTypeId"
+                     select="com.micromarket.mapper.BigTypeMapper.findById">
+        </association>
+    </resultMap>
+    <select id="getTotal" resultType="Long" parameterType="Map">
+        select count(*) from t_smallType
+        <where>
+            <if test="name!=null and name!=''">
+                and name like concat("%",#{name},"%")
+            </if>
+        </where>
+
+    </select>
+    <select id="list" parameterType="Map" resultMap="smallTypeResult">
+        select * from t_smallType
+        <where>
+            <if test="name!=null and name!=''">and name like concat("%",#{name},"%")</if>
+        </where>
+        <if test="start!=null and pageSize!=null">limit #{start},#{pageSize}</if>
+    </select>
+    <select id="findById" resultMap="smallTypeResult" parameterType="Integer" >
+        select * from t_smallType where id=#{id}
+    </select>
+</mapper>

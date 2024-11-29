@@ -1,0 +1,60 @@
+<!-- 商品轮播开始 -->
+<view class="product_swiper">
+  <swiper indicator-dots autoplay circular interval="2000">
+    <swiper-item wx:for="{{productObj.productSwiperImageList}}" wx:key="id">
+      <!-- <navigator url=""> -->
+        <image mode="widthFix" src="{{base_Url+'/image/productSwiperImage/'+item.image}}">
+        </image>
+      <!-- </navigator> -->
+    </swiper-item>
+  </swiper>
+</view>
+<!-- 商品轮播结束 -->
+<!-- 商品信息开始 -->
+<view class="product_price">￥{{productObj.price}}</view>
+<view class="product_name">{{productObj.name}}</view>
+<view class="product_description">{{productObj.description}}</view>
+<!-- 商品信息结束 -->
+<!-- 商品详情开始 -->
+<view class="desc_tabs">
+  <view class="tabs_title">
+    <view class="title_item {{active_index==0? 'active':''}}" data-index="0" bindtap="handItemTab">
+      商品介绍</view>
+    <view class="title_item {{active_index==1? 'active':''}}" data-index="1" bindtap="handItemTab">
+      规格参数</view>
+  </view>
+  <view class="tabs_content">
+    <block wx:if="{{active_index==0}}">
+      <rich-text nodes="{{productObj.productIntroImgs}}" />
+    </block>
+    <block wx:if="{{active_index==1}}">
+      <rich-text nodes="{{productObj.productParaImgs}}" />
+    </block>
+  </view>
+</view>
+<!-- 商品详情结束 -->
+<!-- 底部菜单栏开始 -->
+<view class="btm_tool">
+
+  <navigator open-type="switchTab" url="/pages/index/index" class="tool_item">
+    <view class="iconfont icon-home"></view>
+    <view>首页</view>
+  </navigator>
+  <view class="tool_item">
+    <view class="iconfont icon-kefu"></view>
+    <view>客服</view>
+    <button open-type="contact"></button>
+  </view>
+  <navigator open-type="switchTab" url="/pages/cart/index" class="tool_item ">
+    <view class="iconfont icon-31gouwuche"></view>
+    <view>购物车</view>
+  </navigator>
+  <view class="tool_item btn_cart" bindtap="handleCartAdd">
+    <view>加入购物车</view>
+  </view>
+  <view class="tool_item btn_buy" bindtap="handleBuyImmediate" data-id="{{productObj.id}}">
+    立即购买
+  </view>
+
+</view>
+<!-- 底部菜单栏结束 -->

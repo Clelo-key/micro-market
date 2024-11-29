@@ -1,0 +1,33 @@
+<view class="cates">
+  <!-- 搜索框开始 -->
+  <SearchBar></SearchBar>
+  <!-- 搜索框结束 -->
+  <view class="cates_container">
+    <!-- 左侧大类开始 -->
+    <scroll-view scroll-y class="left_menu">
+      <!-- 遍历数组时key使用当前元素本身 -->
+      <view class="menu_item {{index==currentIndex?'active':''}}" wx:for="{{leftMenuList}}" wx:key="*this" data-index="{{index}}" bindtap="handMeanuItemChange">
+        {{item}}
+      </view>
+    </scroll-view>
+    <!-- 左侧大类结束 -->
+    <!-- 右侧大类开始 -->
+    <scroll-view scroll-y class="right_content" scroll-top="{{scrollTop}}">
+      <view class="productType" wx:for="{{rightMenuList}}" wx:key="id" wx:for-item="productType">
+        <view class="productType_title">
+          {{productType.name}}
+        </view>
+        <view class="product_list" wx:for="{{productType.productList}}" wx:key="id" wx:for-item="product">
+          <navigator url="/pages/product_detail/index?id={{product.id}}">
+            <image mode="widthFix" src="{{base_Url+'/image/product/'+product.proPic}}"></image>
+            <view class="right">
+              <view class="product_name">{{product.name}}</view>
+              <view class="product_price">￥{{product.price}}</view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- 右侧大类结束 -->
+  </view>
+</view>

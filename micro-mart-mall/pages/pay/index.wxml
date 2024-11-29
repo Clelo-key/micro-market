@@ -1,0 +1,52 @@
+<view class="user_info_row">
+  <view class="user_info">
+    <view class="city_info">{{address.provinceName}}{{address.cityName}}{{address.countyName}}</view>
+    <view class="district_info"> {{address.detailInfo}}</view>
+    <view class="private_info">{{address.userName}} <span>{{address.telNumber}}</span></view>
+  </view>
+  <view class="change_address_btn">
+    <button size="mini" plain bindtap="handleChooseAdress">{{address.provinceName==null?"添加地址":'更改地址'}}</button>
+  </view>
+</view>
+<!-- 购物车商品展示  开始 -->
+<view class="cart_content">
+  <view class="cart_main">
+    <view class="cart_item" wx:for="{{cart}}" wx:key="id">
+      <block wx:if="{{payWay==1 || item.checked}}">
+        <!-- 商品图片开始 -->
+        <navigator class="cart_img_warp">
+          <image mode="widthFix" src="{{base_Url+'/image/product/'+item.proPic}}"></image>
+        </navigator>
+        <!-- 商品图片结束 -->
+        <!-- 商品信息 开始 -->
+        <view class="cart_info_warp">
+          <navigator url="">
+            <view class="goods_name">{{item.name}}</view>
+          </navigator>
+          <view class="goods_price_warp">
+            <view class="goods_price">￥{{item.price}}</view>
+            <view class="cart_num_tool">
+              <view class="good_num">x{{item.num}}</view>
+            </view>
+          </view>
+        </view>
+        <!-- 商品信息 结束 -->
+      </block>
+    </view>
+
+
+  </view>
+</view>
+<!-- 购物车商品展示  结束 -->
+<!-- 底部工具栏开始 -->
+<view class="footer_tool">
+  <view class="total_price_warp">
+    <view class="total_price">
+      <span>￥</span><text class="total_price_text">{{totalPrice}}</text>
+    </view>
+  </view>
+  <view class="order_pay_warp">
+    <view class="order_pay" bindtap="handleOrderPay">提交订单({{totalNum}})</view>
+  </view>
+</view>
+<!-- 底部工具栏结束 -->

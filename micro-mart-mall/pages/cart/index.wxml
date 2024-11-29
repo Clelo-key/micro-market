@@ -1,0 +1,84 @@
+<!-- 收获收货地址开始 -->
+<view class="receive_address_row" wx:if="{{!address.userName}}">
+  <view class="adress_btn">
+    <button type="default" plain bindtap="handleChooseAdress">获取收获地址</button>
+  </view>
+</view>
+<!-- 获取收货地址结束 -->
+<!-- 展示收货地址开始 -->
+<view class="user_info_row" wx:else>
+  <view class="user_info">
+    <view class="city_info">{{address.provinceName}}{{address.cityName}}{{address.countyName}}</view>
+    <view class="district_info"> {{address.detailInfo}}</view>
+    <view class="private_info">{{address.userName}} <span>{{address.telNumber}}</span></view>
+  </view>
+  <view class="change_address_btn">
+    <button size="mini" plain bindtap="handleChooseAdress">更改地址</button>
+  </view>
+</view>
+<!-- 展示收货地址结束 -->
+<!-- 购物车商品展示  开始 -->
+<view class="cart_content">
+  <view class="cart_main">
+    <block wx:if="{{cart.length===0}}">
+      <view>
+        <image mode="widthFix" src="../../image/icons/empty.png"></image>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="cart_item" wx:for="{{cart}}" wx:key="id">
+        <!-- 复选框开始 -->
+        <view class="cart_chk_warp">
+          <checkbox-group data-id="{{item.id}}" bindtap="handItemChange">
+            <checkbox model:checked="{{item.checked}}"></checkbox>
+          </checkbox-group>
+        </view>
+        <!-- 复选框结束 -->
+        <!-- 商品图片开始 -->
+        <navigator class="cart_img_warp">
+          <image mode="widthFix" src="{{base_Url+'/image/product/'+item.proPic}}"></image>
+        </navigator>
+        <!-- 商品图片结束 -->
+
+        <!-- 商品信息 开始 -->
+        <view class="cart_info_warp">
+          <navigator url="">
+            <view class="goods_name">{{item.name}}</view>
+          </navigator>
+          <view class="goods_price_warp">
+            <view class="goods_price">￥{{item.price}}</view>
+            <view class="cart_num_tool">
+              <view class="num_edit" bindtap="handleNumChange" data-id="{{item.id}}" data-operation="-1">-</view>
+              <view class="good_num">{{item.num}}</view>
+              <view class="num_edit" bindtap="handleNumChange" data-id="{{item.id}}" data-operation="1">+</view>
+            </view>
+          </view>
+        </view>
+        <!-- 商品信息 结束 -->
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 购物车商品展示  结束 -->
+
+<!-- 底部工具栏开始 -->
+<view class="footer_tool">
+  <view class="all_chec_kwarp">
+    <checkbox-group bindtap="handleChooseAll">
+      <checkbox model:checked="{{allChecked}}"><text>全选</text></checkbox>
+    </checkbox-group>
+  </view>
+
+  <view class="total_price_warp">
+    <view class="total_price">
+      合计: <span>￥</span><text class="total_price_text">{{totalPrice}}</text>
+    </view>
+  </view>
+
+  <view class="order_pay_warp" bindtap="handlePay">
+    <view class="order_pay" >结算({{totalNum}})</view>
+  </view>
+
+</view>
+
+<!-- 底部工具栏结束 -->

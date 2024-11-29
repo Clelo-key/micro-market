@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet: context-path:/
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/micro_market?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto #id生成规则：数据库id自增
+  configuration:
+    map-underscore-to-camel-case: false  # 开启驼峰功能
+    auto-mapping-behavior: full # 自动映射任何复杂的结果
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/micromarket/mapper/*.xml
+weixin:
+  jscode2sessionUrl: https://api.weixin.qq.com/sns/jscode2session
+  appid: wxe86990ad7843dae0
+  secret: 1bdcdce29ff3e909710561b092ae4851
+
+bigTypeImagesFilePath: E://images/micro_mart/images/bigTypeImages/
+productImagesFilePath: E://images/micro_mart/images/productImages/
+swiperImagesFilePath: E://images/micro_mart/images/swiperImages/
+productSwiperImagesFilePath: E://images/micro_mart/images/productSwiperImages/

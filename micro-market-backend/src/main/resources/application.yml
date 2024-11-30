@@ -21,8 +21,8 @@ mybatis-plus:
   mapper-locations: classpath:com/micromarket/mapper/*.xml
 weixin:
   jscode2sessionUrl: https://api.weixin.qq.com/sns/jscode2session
-  appid: wxe86990ad7843dae0
-  secret: 1bdcdce29ff3e909710561b092ae4851
+  appid: fill it with youself appid 
+  secret: fill it with youself secreate 
 
 bigTypeImagesFilePath: E://images/micro_mart/images/bigTypeImages/
 productImagesFilePath: E://images/micro_mart/images/productImages/
